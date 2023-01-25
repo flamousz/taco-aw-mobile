@@ -1,18 +1,15 @@
-import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomePage from "./views/HomePage";
+// import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
 
-const Stack = createNativeStackNavigator()
+import MainStack from "./navigators/MainStack";
+
+
+
 
 export default function App() {
 	return (
-    <NavigationContainer>
-      <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomePage} />
-      </Stack.Navigator>
-    </NavigationContainer>
-
+		<NavigationContainer>
+      <MainStack />
+		</NavigationContainer>
 	);
 }
-
