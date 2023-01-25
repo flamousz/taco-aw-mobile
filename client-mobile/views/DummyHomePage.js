@@ -6,7 +6,10 @@ export default function DummyHomePage({ navigation }) {
 			<Text>ini dummy</Text>
 			<Button 
                 title='profile'
-                onPress={() => navigation.navigate('Detail')}
+                onPress={() => navigation.navigate('Detail', {
+                    id: 86,
+                    otherParam: 'anything you want here',
+                  })}
             />
 		</View>
 	);
