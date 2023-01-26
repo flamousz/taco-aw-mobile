@@ -1,5 +1,6 @@
 const { ObjectId } = require("mongodb");
 const { getDatabase } = require("../config/mongoConnection");
+const { hashPassword } = require("../helpers/bcrypt");
 
 class User {
 	static async getUsers() {
@@ -8,7 +9,7 @@ class User {
 			const dataTable = dataDb.collection("User");
 
 			let data = await dataTable
-				.find({}, { projection: { password: 0 } })
+				.find()
 				.toArray();
 
 			return data;
@@ -22,6 +23,7 @@ class User {
 			let inputUser = {
 				...input,
 				created_at: new Date(),
+                password: hashPassword(input.password)
 			};
 
 			const dataDb = getDatabase();
