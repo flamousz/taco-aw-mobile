@@ -7,7 +7,9 @@ class User {
 			const dataDb = getDatabase();
 			const dataTable = dataDb.collection("User");
 
-			let data = await dataTable.find().toArray();
+			let data = await dataTable
+				.find({}, { projection: { password: 0 } })
+				.toArray();
 
 			return data;
 		} catch (err) {
@@ -37,7 +39,10 @@ class User {
 			const dataDb = getDatabase();
 			const dataTable = dataDb.collection("User");
 
-			let data = await dataTable.findOne({ _id: ObjectId(id) });
+			let data = await dataTable.findOne(
+				{ _id: ObjectId(id) },
+				{ projection: { password: 0 } }
+			);
 
 			return data;
 		} catch (err) {
