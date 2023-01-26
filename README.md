@@ -23,8 +23,8 @@ Target:
 - [ v] Hit API server yang sudah dibuat untuk mendapatkan data
 - [ v] Mengetahui bahwa redux & redux-thunk bisa diimplementasi di react-native
 - [v ] Memahami `react-native-navigation`
-- [ ] Memahami Stack Navigation & Tab Navigation
-- [ ] Membuat min 2 Screen (Home, Detail)
+- [ v] Memahami Stack Navigation & Tab Navigation
+- [ v] Membuat min 2 Screen (Home, Detail)
 
 **Report:**
 
@@ -34,7 +34,7 @@ Target:
 
 Target:
 
-- [ ] Memahami React Native Gesture Handler
+- [ v] Memahami React Native Gesture Handler
 - [ ] Memahami NoSQL: Mongodb
 - [ ] Membuat service users dengan Mongodb (Kerjakan di `server/services/users`)
 - [ ] Membuat action pada users: Read, Create & Delete (Update optional)

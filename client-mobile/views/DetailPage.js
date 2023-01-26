@@ -1,49 +1,62 @@
-import { StyleSheet, Button, Text, View, Image, ScrollView, StatusBar } from "react-native";
-import { useState, useEffect } from 'react'
-import { Card } from '../components/Card'
+import { Text, Image, View, ScrollView } from "react-native";
+import { useState, useEffect } from "react";
 
-export default function DetailPage({navigation}) {
+export default function DetailPage({ navigation, route }) {
+	const { id } = route.params;
+	const [data, setData] = useState({});
+	useEffect(() => {
+		fetch(`https://taco-aw.foxhub.space/items/${id}`)
+			.then((res) => res.json())
+			.then((data) => setData(data))
+			.catch((err) => console.log(err));
+	}, []);
+	console.log(data, "<< ini food");
 
-    return(
-        <View style={{ flex: 1, flexDirection:'column', paddingTop: 5 }} >
-            <Card />
-            <Button title="Home" onPress={() => navigation.navigate('Home')} />
-        </View>
-    )
-
-
+	return (
+		<ScrollView style={{ flex: 1, backgroundColor: 'white'}}>
+			<Text
+				style={{
+					flex: 1,
+					width: "100%",
+                    textAlign: 'left',
+                    paddingLeft:23,
+                    paddingTop: 35,
+                    height: 100,
+					backgroundColor: "#4285F4",
+					fontSize: 30,
+                    fontWeight: 'bold',
+                    borderLeftWidth: 8,
+                    borderRightWidth: 8,
+                    borderColor: 'white',
+                    borderTopWidth:8,
+                    color: 'white'
+				}}
+			>
+				{data.name}
+			</Text>
+			<Image
+				style={{
+					flex: 2,
+                    marginLeft:8,
+					width: "96%",
+					height: 200,
+					resizeMode: "cover",
+				}}
+				source={{ uri: data.imgUrl }}
+			/>
+			<Text
+				style={{
+					flex: 3,
+                    padding: 30,
+					fontSize: 20,
+					borderWidth: 15,
+					width: "100%",
+                    borderColor: 'white',
+					backgroundColor: "white",
+				}}
+			>
+				{data.description}
+			</Text>
+		</ScrollView>
+	);
 }
-
-
-// const style = StyleSheet.create({
-//     container: { paddingHorizontal: 5, paddingVertical: 5, width: '50%' },
-//     card: {
-//         flexDirection: 'row',
-//         borderRadius: 5,
-//         overflow: 'hidden',
-//         backgroundColor: '#fff'
-//     },
-//     imageContainer: {padding: 5},
-//     image: {
-//         width: 75,
-//         height: 75,
-//         borderRadius: 5
-//     },
-//     textContainer: {
-//         flex:1,
-//         padding: 5
-//     }, 
-//     text: {
-//         color: 'white',
-//         fontSize: 18
-//     },
-//     action: {
-//         backgroundColor: 'tomato',
-//         borderRadius: 5,
-//         paddingHorizontal: 10,
-//         paddingVertical: 2,
-//         alignSelf: 'flex-start',
-//         opacity: 0.8,
-//         marginTop: 5
-//     }
-// })

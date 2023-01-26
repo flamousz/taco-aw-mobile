@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons';
 import HomePage from '../views/HomePage'
-import DetailPage from '../views/DetailPage'
+import FoodsPage from '../views/FoodsPage'
 import Card from '../components/Card';
 
 const Tab = createBottomTabNavigator()
@@ -17,19 +17,20 @@ export default function ProfileTab() {
                   iconName = focused
                     ? 'ios-home'
                     : 'ios-home-outline';
-                } else if (route.name === 'Card') {
+                } else if (route.name === 'Foods') {
                   iconName = focused ? 'fast-food' : 'fast-food-outline';
                 }
     
                 return <Ionicons name={iconName} size={size} color={color} />;
               },
-              tabBarActiveTintColor: '#4285F4',
-              tabBarInactiveTintColor: 'gray',
+              tabBarActiveTintColor: 'white',
+              tabBarInactiveTintColor: 'black',
+              tabBarStyle: { backgroundColor: '#4285F4' }
               
         })}>
             <Tab.Screen name='Home' component={HomePage}/>
-            {/* <Tab.Screen name='Foods' component={DetailPage}/> */}
-            <Tab.Screen name='Card' component={Card}/>
+            {/* <Tab.Screen name='Foods' component={FoodsPage}/> */}
+            <Tab.Screen name='Foods' component={FoodsPage}/>
         </Tab.Navigator>
     )
 }

@@ -6,10 +6,10 @@ import {
 	ScrollView,
 	StatusBar,
 } from "react-native";
-import useFetch from "../hooks/itemFetch";
+
 
 export default function HomePage({ navigation }) {
-	const items = useFetch("https://taco-aw.foxhub.space/items");
+
 	// console.log(items,'<< ini items');
 	return (
 		<ScrollView

@@ -9,9 +9,8 @@ import {
 	StatusBar,
 } from "react-native";
 
-export default function Card() {
+export default function Card({ post }) {
 	const navigation = useNavigation();
-
 	return (
 		<View style={style.container}>
 			<View style={style.card}>
@@ -19,19 +18,19 @@ export default function Card() {
 					<Image
 						style={style.image}
 						source={{
-							uri: "https://reactnative.dev/docs/assets/p_cat2.png",
+							uri: post.imgUrl
 						}}
 					/>
 				</View>
 				<View style={style.textContainer}>
-					<Text style={style.text}>masih dummy</Text>
+					<Text style={style.text}>{post.name}</Text>
 					<TouchableOpacity
 						style={style.action}
 						onPress={() => {
-							navigation.navigate("Detail", { id: 4 });
+							navigation.navigate("Detail", { id: post.id });
 						}}
 					>
-						<Text>Detail</Text>
+						<Text style={{color:'white'}}>Detail</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -58,11 +57,11 @@ const style = StyleSheet.create({
 		padding: 5,
 	},
 	text: {
-		color: "tomato",
-		fontSize: 18,
+		color: "#4285F4",
+		fontSize: 12,
 	},
 	action: {
-		backgroundColor: "tomato",
+		backgroundColor: "#4285F4",
 		borderRadius: 5,
 		paddingHorizontal: 10,
 		paddingVertical: 2,
