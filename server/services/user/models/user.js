@@ -9,7 +9,7 @@ class User {
 			const dataTable = dataDb.collection("User");
 
 			let data = await dataTable
-				.find()
+				.find({}, { projection: { password: 0 } })
 				.toArray();
 
 			return data;

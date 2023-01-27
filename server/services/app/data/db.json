@@ -1,0 +1,210 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "andrew",
+            "email": "andrew@mail.com",
+            "password": "andrew",
+            "role": "admin",
+            "phoneNumber": "0852612823",
+            "address": "jl. anggrek no 3"
+        },
+        {
+            "id": 2,
+            "name": "darwin",
+            "email": "darwin@mail.com",
+            "password": "darwin",
+            "role": "admin",
+            "phoneNumber": "0852623421",
+            "address": "jl. mawar no 9"
+        },
+        {
+            "id": 3,
+            "name": "angel",
+            "email": "angel@mail.com",
+            "password": "angel",
+            "role": "customer",
+            "phoneNumber": "0852623421",
+            "address": "jl. jeruk no 2"
+        },
+        {
+            "id": 4,
+            "name": "wawan",
+            "email": "wawan@mail.com",
+            "password": "wawan",
+            "role": "customer",
+            "phoneNumber": "085261238",
+            "address": "jl. delima no 81"
+        }
+    ],
+    "items": [
+        {
+            "id": 1,
+            "name": "CRUNCHWRAP SUPREME",
+            "description": "One of Taco Bell`s most recognizable and unique creations, the Crunchwrap Supreme is packed full of our signature ingredients. That means you get EVERY flavor in EVERY bite. A flour tortilla layered with seasoned ground beef, warm nacho cheese sauce, a crunchy flat taco shell, sour cream, our signature hot sauce, fresh lettuce and diced tomatoes. All wrapped up and grilled to perfection, making it great to go anywhere you need.",
+            "price": 40000,
+            "imgUrl": "https://www.tacobell.co.id/wp-content/uploads/2020/09/Crunchwrap-Supreme.jpg",
+            "authorId": 1,
+            "categoryId": 1,
+            "Category": {
+                "id": 1,
+                "name": "Quesadilla"
+            },
+            "User": {
+                "id": 1,
+                "name": "andrew",
+                "email": "andrew@mail.com",
+                "password": "andrew",
+                "role": "admin",
+                "phoneNumber": "0852612823",
+                "address": "jl. anggrek no 3"
+            },
+            "Ingredients": [
+                {
+                    "id": 1,
+                    "itemId": 1,
+                    "name": "flour"
+                },
+                {
+                    "id": 2,
+                    "itemId": 1,
+                    "name": "chicken"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "TACO SUPREME",
+            "description": "Our tacos are so good, it`s in our name! Seasoned ground beef topped with our signature hot sauce, sour cream, fresh lettuce, diced tomatoes and cheddar cheese. Try it in a freshly fried crunchy corn tortilla shell or a soft flour tortilla and enjoy this beefy classic.",
+            "price": 35000,
+            "imgUrl": "https://www.tacobell.co.id/wp-content/uploads/2020/09/2-Taco-Supreme.jpg",
+            "authorId": 1,
+            "categoryId": 2,
+            "Category": {
+                "id": 2,
+                "name": "Taco"
+            },
+            "User": {
+                "id": 1,
+                "name": "andrew",
+                "email": "andrew@mail.com",
+                "password": "andrew",
+                "role": "admin",
+                "phoneNumber": "0852612823",
+                "address": "jl. anggrek no 3"
+            },
+            "Ingredients": [
+                {
+                    "id": 3,
+                    "itemId": 2,
+                    "name": "flour"
+                },
+                {
+                    "id": 2,
+                    "itemId": 2,
+                    "name": "meat"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "CHICKEN QUESADILLA",
+            "description": "This one`s for the cheese fans! If you want to keep things simple, but classic and next-level cheesy. A grilled flour tortilla is packed with a melted mozzarella and cheddar cheese blend, grilled chicken and our creamy jalapeno sauce.",
+            "price": 33000,
+            "imgUrl": "https://www.tacobell.co.id/wp-content/uploads/2020/09/Chicken-Quesadilla.jpg",
+            "authorId": 2,
+            "categoryId": 1,
+            "Category": {
+                "id": 1,
+                "name": "Quesadilla"
+            },
+            "User": {
+                "id": 2,
+                "name": "darwin",
+                "email": "darwin@mail.com",
+                "password": "darwin",
+                "role": "admin",
+                "phoneNumber": "0852623421",
+                "address": "jl. mawar no 9"
+            },
+            "Ingredients": [
+                {
+                    "id": 1,
+                    "itemId": 3,
+                    "name": "flour"
+                },
+                {
+                    "id": 3,
+                    "itemId": 3,
+                    "name": "chicken ball"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "NAKED CHICKEN TACO",
+            "description": "A taco made entirely out of crispy chicken! Our signature taco shell is made from boldly marinated crispy chicken and filled with creamy ranch sauce, fresh lettuce, diced tomatoes and topped with cheddar cheese.",
+            "price": 43000,
+            "imgUrl": "https://www.tacobell.co.id/wp-content/uploads/2020/09/Naked-Chicken-Taco.jpg",
+            "authorId": 2,
+            "categoryId": 2,
+            "Category": {
+                "id": 2,
+                "name": "Taco"
+            },
+            "User": {
+                "id": 2,
+                "name": "darwin",
+                "email": "darwin@mail.com",
+                "password": "darwin",
+                "role": "admin",
+                "phoneNumber": "0852623421",
+                "address": "jl. mawar no 9"
+            },
+            "Ingredients": [
+                {
+                    "id": 1,
+                    "itemId": 4,
+                    "name": "flour"
+                },
+                {
+                    "id": 5,
+                    "itemId": 4,
+                    "name": "chicken grill"
+                }
+            ]
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "Quesadilla"
+        },
+        {
+            "id": 2,
+            "name": "Taco"
+        }
+    ],
+    "ingredients": [
+        {
+            "id": 1,
+            "itemId": 1,
+            "name": "flour"
+        },
+        {
+            "id": 2,
+            "itemId": 2,
+            "name": "Taco Supreme"
+        },
+        {
+            "id": 3,
+            "itemId": 3,
+            "name": "Chicken Quesadilla"
+        },
+        {
+            "id": 4,
+            "itemId": 4,
+            "name": "Naked Chicken Taco"
+        }
+    ]
+}
