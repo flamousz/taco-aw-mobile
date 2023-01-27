@@ -21,7 +21,7 @@ export default function MainStack() {
 			}}
 		>
 			{/* <Stack.Screen name='Home' component={HomePage} /> */}
-			<Stack.Screen name='Taco-Aw' component={ProfileTab} />
+			<Stack.Screen  name='Taco-Aw' component={ProfileTab} />
 			<Stack.Screen name='DummyHome' component={DummyHomePage} />
 			<Stack.Screen name='Detail' component={DetailPage} />
 		</Stack.Navigator>
