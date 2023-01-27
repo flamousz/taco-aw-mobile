@@ -6,7 +6,7 @@ const express = require("express");
 const errorHandler = require("./middlewares/errorHandler");
 const router = require("./routes");
 const app = express();
-const port = process.env.PORT || 3009;
+const port = process.env.PORT || 4002;
 
 const cors = require("cors");
 
