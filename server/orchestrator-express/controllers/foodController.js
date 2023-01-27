@@ -38,7 +38,7 @@ class FoodController {
 
 	static async postFood(req, res, next) {
 		try {
-			let {
+			const {
 				name,
 				description,
 				price,
@@ -66,6 +66,53 @@ class FoodController {
 			console.log(err);
 		}
 	}
+
+	static async putFood(req, res, next) {
+		try {
+		  const { id } = req.params;
+		  const { name,
+				description,
+				price,
+				imgUrl,
+				UserMongoId,
+				categoryId } = req.body;
+				console.log(name,
+					description,
+					price,
+					UserMongoId,
+					imgUrl,
+					categoryId ,"<< ini balikannn");
+		  const {data} = await axios({
+			method: "PUT",
+			url: `${APP_URL}/items/${id}`,
+			data: { name,
+				description,
+				price,
+				UserMongoId,
+				imgUrl,
+				categoryId },
+		  });
+		  await redis.del("foods:gets");
+		  res.status(200).json(data);
+		} catch (err) {
+		  console.log(err);
+		}
+	  }
+
+	  static async deleteFood(req, res, next) {
+		try {
+		  const { id } = req.params;
+		  const {data} = await axios({
+			method: "DELETE",
+			url: `${APP_URL}/items/${id}`,
+		  });
+		  await redis.del("foods:gets");
+		  res.status(200).json(data);
+		} catch (err) {
+		  console.log(err);
+		}
+	  }
+
 }
 
 module.exports = FoodController;
