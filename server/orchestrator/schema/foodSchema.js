@@ -88,7 +88,7 @@ const foodResolvers = {
 				await redis.set("foods", JSON.stringify(data));
 				return data;
 			} catch (err) {
-				throw err.data;
+				throw err.response.data;
 			}
 		},
 		getFoodById: async (_, args) => {
@@ -102,7 +102,7 @@ const foodResolvers = {
                     user: user.data
                 };
 			} catch (err) {
-				throw err.data;
+				throw err.response.data;
 			}
 		},
 	},
@@ -134,7 +134,7 @@ const foodResolvers = {
 				await redis.del("foods");
 				return data;
 			} catch (err) {
-				throw err.data;
+				throw err.response.data;
 			}
 		},
         deleteFood: async (_, args) => {
@@ -147,7 +147,7 @@ const foodResolvers = {
 				await redis.del("foods");
 				return data;
 			} catch (err) {
-				throw err.data;
+				throw err.response.data;
 			}
 		},
         editFood: async (_, args) => {
@@ -174,7 +174,7 @@ const foodResolvers = {
               await redis.del("foods");
               return data;
             } catch (err) {
-              throw err.data;
+              throw err.response.data;
             }
           }
 	},

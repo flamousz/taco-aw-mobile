@@ -20,7 +20,7 @@ class userController {
 
             res.status(201).json({
                 _id: user.insertedId,
-                userName, email, password, phoneNumber, address, role
+                userName, email, phoneNumber, address, role
             })
         } catch (err) {
             next(err)
@@ -44,7 +44,7 @@ class userController {
        static async deleteById(req, res, next) {
         try {
             let {id} = req.params
-            let user = await User.deleteById(id )
+            await User.deleteById(id )
 
             res.status(200).json({message: `Account has been deleted`})
         } catch (err) {
