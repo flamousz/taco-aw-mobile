@@ -89,7 +89,6 @@ class ItemController {
                     categoryId,
                     ingredient,
                } = req.body;
-
                const item = await Item.create(
                     { name, description, price, imgUrl, UserMongoId, categoryId },
                     {
@@ -136,7 +135,18 @@ class ItemController {
      static async getDetailItem(req, res, next) {
           try {
                const { id } = req.params;
-               const item = await Item.findByPk(id);
+               const item = await Item.findByPk(id, {
+                    include: [
+                         {
+                              model: Category,
+                              attributes: ["name"],
+                         },
+                         {
+                              model: Ingredient,
+                              attributes: ["name"],
+                         },
+                    ]
+               });
                if (!item) {
                     throw { name: "NotFound" };
                }

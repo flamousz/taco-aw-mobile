@@ -8,9 +8,7 @@ class userController {
 
             res.status(200).json(users)
         } catch (err) {
-            console.log(err);
-            // next(err)
-            res.status(500).json({message: 'Internal server error'})
+            next(err)
         }
        } 
 
@@ -20,10 +18,12 @@ class userController {
             let { userName, email, password, phoneNumber, address  } = req.body
             let user = await User.postUser({ userName, email, password, phoneNumber, address  } )
 
-            res.status(201).json(user)
+            res.status(201).json({
+                _id: user.insertedId,
+                userName, email, phoneNumber, address, role
+            })
         } catch (err) {
-            console.log(err);
-            res.status(500).json({message: 'Internal server error'})
+            next(err)
         }
        }
 
@@ -31,23 +31,24 @@ class userController {
         try {
             let {id} = req.params
             let user = await User.getUserById(id )
+            if (!user) {
+                throw { name: 'Usernotfound' }
+            }
 
             res.status(200).json(user)
         } catch (err) {
-            console.log(err);
-            res.status(500).json({message: 'Internal server error'})
+            next(err)
         }
        }
 
        static async deleteById(req, res, next) {
         try {
             let {id} = req.params
-            let user = await User.deleteById(id )
+            await User.deleteById(id )
 
-            res.status(200).json(user)
+            res.status(200).json({message: `Account has been deleted`})
         } catch (err) {
-            console.log(err);
-            res.status(500).json({message: 'Internal server error'})
+            next(err)
         }
        }
 }
