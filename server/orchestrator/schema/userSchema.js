@@ -1,5 +1,4 @@
 const axios = require("axios");
-const APP_URL = process.env.APP_URL;
 const USERS_URL = process.env.USERS_URL;
 const redis = require("../configs/config");
 
@@ -19,6 +18,23 @@ type Query {
     getUserById(_id: ID!): User 
 }
 
+input NewUser {
+    userName: String!
+    email: String!
+    password: String!
+    phoneNumber: String
+    address: String
+  }
+
+type DeleteUser {
+	message: String
+}  
+
+type Mutation {
+    postUser(input: NewUser): User
+    deleteUser(_id: ID!): DeleteUser
+}
+
 `;
 
 const userResolvers = {
@@ -35,7 +51,7 @@ const userResolvers = {
 				await redis.set("users", JSON.stringify(data));
 				return data;
 			} catch (err) {
-				throw err.response.data;
+				throw err.data;
 			}
 		},
 		getUserById: async (_, args) => {
@@ -45,9 +61,40 @@ const userResolvers = {
 				const { data } = await axios({ url: `${USERS_URL}/${_id}` });
 				return data;
 			} catch (err) {
-				throw err.response.data;
+				throw err.data;
 			}
-		}
+		},
+	},
+	Mutation: {
+		postUser: async (_, args) => {
+			try {
+				const role = "admin";
+				const { userName, email, password, phoneNumber, address } =
+					args.input;
+				const { data } = await axios({
+					method: "POST",
+					url: `${USERS_URL}`,
+					data: { userName, email, password, role, phoneNumber, address },
+				});
+				await redis.del("users");
+				return data;
+			} catch (err) {
+				throw err.data;
+			}
+		},
+		deleteUser: async (_, args) => {
+			try {
+				const { _id } = args;
+				const { data } = await axios({
+					method: "DELETE",
+					url: `${USERS_URL}/${_id}`,
+				});
+				await redis.del("users");
+				return data;
+			} catch (err) {
+				throw err.data;
+			}
+		},
 	},
 };
 

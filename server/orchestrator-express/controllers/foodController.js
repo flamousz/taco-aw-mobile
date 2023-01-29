@@ -26,11 +26,14 @@ class FoodController {
 	static async getFoodById(req, res) {
 		try {
 			const { id } = req.params;
-
 			const { data } = await axios({ url: `${APP_URL}/items/${id}` });
-			// redis cache set
+		
+			const user = await axios({ url: `${USERS_URL}/${data.UserMongoId}` })
+	
 
-			res.status(200).json(data);
+			res.status(200).json({
+				...data, User: {name: user.data.userName}
+			});
 		} catch (err) {
 			console.log(err);
 		}

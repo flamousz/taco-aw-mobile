@@ -17,10 +17,14 @@ class userController {
        static async postUser(req, res, next) {
         try {
             let role = 'admin'
+            console.log("masuk")
             let { userName, email, password, phoneNumber, address  } = req.body
             let user = await User.postUser({ userName, email, password, phoneNumber, address  } )
 
-            res.status(201).json(user)
+            res.status(201).json({
+                _id: user.insertedId,
+                userName, email, password, phoneNumber, address, role
+            })
         } catch (err) {
             console.log(err);
             res.status(500).json({message: 'Internal server error'})
@@ -44,7 +48,7 @@ class userController {
             let {id} = req.params
             let user = await User.deleteById(id )
 
-            res.status(200).json(user)
+            res.status(200).json({message: `Account has been deleted`})
         } catch (err) {
             console.log(err);
             res.status(500).json({message: 'Internal server error'})

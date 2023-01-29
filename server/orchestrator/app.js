@@ -4,12 +4,13 @@ if (process.env.NODE_ENV !== "production") {
 
 const { ApolloServer } = require("@apollo/server");
 const { startStandaloneServer } = require("@apollo/server/standalone");
+const { foodTypeDef, foodResolvers } = require("./schema/foodSchema");
 const { userTypeDef, userResolvers } = require("./schema/userSchema");
 const port = process.env.PORT || 4000;
 
 const server = new ApolloServer({
-	typeDefs: [userTypeDef, ],
-	resolvers: [userResolvers],
+	typeDefs: [userTypeDef, foodTypeDef ],
+	resolvers: [userResolvers, foodResolvers],
 	introspection: true,
 });
 
