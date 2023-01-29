@@ -1,10 +1,14 @@
+if (process.env.NODE_ENV != "production") {
+    require("dotenv").config();
+}
+
 const express = require('express')
 const app = express()
 const cors = require('cors')
 const { runConnection, getDatabase } = require('./config/mongoConnection')
 const router = require('./routes')
 const errHandler = require('./middlewares/errhandler')
-const port = 4001
+const port = process.env.PORT || 4001
 
 app.use(cors())
 app.use(express.json())
