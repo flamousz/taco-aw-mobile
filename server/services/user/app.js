@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const { runConnection, getDatabase } = require('./config/mongoConnection')
 const router = require('./routes')
+const errHandler = require('./middlewares/errhandler')
 const port = 4001
 
 app.use(cors())
@@ -11,8 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router)
 
-// app.get('/', (req, res) => res.send('halo world'))
-
+app.use(errHandler)
 
 runConnection()
     .then(() => {

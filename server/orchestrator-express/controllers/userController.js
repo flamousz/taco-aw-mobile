@@ -3,7 +3,7 @@ const USERS_URL = process.env.USERS_URL;
 const redis = require("../configs/config");
 
 class UserController {
-	static async getUsers(req, res) {
+	static async getUsers(req, res, next) {
 		try {
 			let cacheFoodsData = await redis.get("users:get");
 
@@ -18,11 +18,11 @@ class UserController {
 
 			res.status(200).json(data);
 		} catch (err) {
-			console.log(err);
+			next(err)
 		}
 	}
 
-	static async getUserById(req, res) {
+	static async getUserById(req, res, next) {
 		try {
 			const { id } = req.params;
 			const { data } = await axios({ url: `${USERS_URL}/${id}` });
@@ -31,11 +31,11 @@ class UserController {
 				data
 			});
 		} catch (err) {
-			console.log(err);
+			next(err)
 		}
 	}
 
-	static async postUser(req, res) {
+	static async postUser(req, res, next) {
 		try {
 			const { userName, email, password, address, phoneNumber } = req.body;
 			const { data } = await axios({
@@ -52,7 +52,7 @@ class UserController {
 			await redis.del("users:get");
 			res.status(201).json(data);
 		} catch (err) {
-			console.log(err);
+			next(err)
 		}
 	}
 
@@ -66,7 +66,7 @@ class UserController {
 		  await redis.del("users:get");
 		  res.status(200).json(data);
 		} catch (err) {
-		  console.log(err);
+			next(err)
 		}
 	  }
 }

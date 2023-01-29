@@ -118,13 +118,6 @@ const foodResolvers = {
 					categoryId,
 					ingredient,
 				} = args.input;
-                console.log(name,
-					description,
-					price,
-					imgUrl,
-					UserMongoId,
-					categoryId,
-					ingredient);
 				const { data } = await axios({
 					method: "POST",
 					url: `${APP_URL}/items`,
@@ -138,7 +131,6 @@ const foodResolvers = {
 						ingredient,
 					},
 				});
-				console.log(data);
 				await redis.del("foods");
 				return data;
 			} catch (err) {

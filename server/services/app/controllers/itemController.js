@@ -89,7 +89,6 @@ class ItemController {
                     categoryId,
                     ingredient,
                } = req.body;
-               console.log(typeof(ingredient));
                const item = await Item.create(
                     { name, description, price, imgUrl, UserMongoId, categoryId },
                     {
@@ -106,7 +105,6 @@ class ItemController {
                     message: `${name} has been add to food list`,
                });
           } catch (err) {
-               console.log(err)
                await t.rollback();
                next(err);
           }
@@ -137,7 +135,6 @@ class ItemController {
      static async getDetailItem(req, res, next) {
           try {
                const { id } = req.params;
-               console.log(id, "<<<<<<<<<<<<<<<<<<<<<")
                const item = await Item.findByPk(id, {
                     include: [
                          {

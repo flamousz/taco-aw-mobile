@@ -8,16 +8,13 @@ class userController {
 
             res.status(200).json(users)
         } catch (err) {
-            console.log(err);
-            // next(err)
-            res.status(500).json({message: 'Internal server error'})
+            next(err)
         }
        } 
 
        static async postUser(req, res, next) {
         try {
             let role = 'admin'
-            console.log("masuk")
             let { userName, email, password, phoneNumber, address  } = req.body
             let user = await User.postUser({ userName, email, password, phoneNumber, address  } )
 
@@ -26,8 +23,7 @@ class userController {
                 userName, email, password, phoneNumber, address, role
             })
         } catch (err) {
-            console.log(err);
-            res.status(500).json({message: 'Internal server error'})
+            next(err)
         }
        }
 
@@ -35,11 +31,13 @@ class userController {
         try {
             let {id} = req.params
             let user = await User.getUserById(id )
+            if (!user) {
+                throw { name: 'Usernotfound' }
+            }
 
             res.status(200).json(user)
         } catch (err) {
-            console.log(err);
-            res.status(500).json({message: 'Internal server error'})
+            next(err)
         }
        }
 
@@ -50,8 +48,7 @@ class userController {
 
             res.status(200).json({message: `Account has been deleted`})
         } catch (err) {
-            console.log(err);
-            res.status(500).json({message: 'Internal server error'})
+            next(err)
         }
        }
 }

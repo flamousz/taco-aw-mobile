@@ -4,7 +4,7 @@ const APP_URL = process.env.APP_URL;
 const USERS_URL = process.env.USERS_URL;
 
 class FoodController {
-	static async getFoods(req, res) {
+	static async getFoods(req, res, next) {
 		try {
 			let cacheFoodsData = await redis.get("foods:get");
 
@@ -19,11 +19,11 @@ class FoodController {
 
 			res.status(200).json(data);
 		} catch (err) {
-			console.log(err);
+			next(err)
 		}
 	}
 
-	static async getFoodById(req, res) {
+	static async getFoodById(req, res, next) {
 		try {
 			const { id } = req.params;
 			const { data } = await axios({ url: `${APP_URL}/items/${id}` });
@@ -35,7 +35,7 @@ class FoodController {
 				...data, User: {name: user.data.userName}
 			});
 		} catch (err) {
-			console.log(err);
+			next(err)
 		}
 	}
 
@@ -66,7 +66,7 @@ class FoodController {
 			await redis.del("foods:get");
 			res.status(201).json(data);
 		} catch (err) {
-			console.log(err);
+			next(err)
 		}
 	}
 
@@ -79,12 +79,6 @@ class FoodController {
 				imgUrl,
 				UserMongoId,
 				categoryId } = req.body;
-				console.log(name,
-					description,
-					price,
-					UserMongoId,
-					imgUrl,
-					categoryId ,"<< ini balikannn");
 		  const {data} = await axios({
 			method: "PUT",
 			url: `${APP_URL}/items/${id}`,
@@ -98,7 +92,7 @@ class FoodController {
 		  await redis.del("foods:gets");
 		  res.status(200).json(data);
 		} catch (err) {
-		  console.log(err);
+			next(err)
 		}
 	  }
 
@@ -112,7 +106,7 @@ class FoodController {
 		  await redis.del("foods:gets");
 		  res.status(200).json(data);
 		} catch (err) {
-		  console.log(err);
+			next(err)
 		}
 	  }
 
