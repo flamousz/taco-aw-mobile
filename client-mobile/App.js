@@ -1,15 +1,14 @@
-// import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
-
+import { ApolloProvider } from "@apollo/client";
 import MainStack from "./navigators/MainStack";
-
-
-
+import client from "./src/config/apolloConfig";
 
 export default function App() {
 	return (
-		<NavigationContainer>
-      <MainStack />
-		</NavigationContainer>
+		<ApolloProvider client={client}>
+			<NavigationContainer>
+				<MainStack />
+			</NavigationContainer>
+		</ApolloProvider>
 	);
 }

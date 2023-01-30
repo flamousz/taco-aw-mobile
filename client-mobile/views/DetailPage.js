@@ -1,17 +1,44 @@
+import { gql, useQuery } from "@apollo/client";
 import { Text, Image, View, ScrollView } from "react-native";
-import { useState, useEffect } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
+
+const GET_PRODUCT_DETAIL =  gql`
+query Query($getFoodByIdId: ID!) {
+	getFoodById(id: $getFoodByIdId) {
+	  id
+	  name
+	  description
+	  price
+	  imgUrl
+	  UserMongoId
+	  categoryId
+	  user {
+		userName
+	  }
+	  Category {
+		name
+	  }
+	  Ingredients {
+		name
+	  }
+	}
+  }
+`
 export default function DetailPage({ navigation, route }) {
 	const { id } = route.params;
-	const [data, setData] = useState({});
-	useEffect(() => {
-		fetch(`https://taco-aw.foxhub.space/items/${id}`)
-			.then((res) => res.json())
-			.then((data) => setData(data))
-			.catch((err) => console.log(err));
-	}, []);
-	console.log(data, "<< ini food");
-
+	const { loading, error, data } = useQuery(GET_PRODUCT_DETAIL, {
+		variables: { getFoodByIdId: id }
+	})
+	  console.log(data.getFoodById.Ingredients[0].name,'<<<<< ini bumbu');
+	if (loading) {
+		return (
+		  <SafeAreaView >
+			<Text>loading</Text>
+		  </SafeAreaView>
+		);
+	}  
+	
 	return (
 		<ScrollView style={{ flex: 1, backgroundColor: 'white'}}>
 			<Text
@@ -32,7 +59,7 @@ export default function DetailPage({ navigation, route }) {
                     color: 'white'
 				}}
 			>
-				{data.name}
+				{data.getFoodById.name}
 			</Text>
 			<Image
 				style={{
@@ -42,7 +69,7 @@ export default function DetailPage({ navigation, route }) {
 					height: 200,
 					resizeMode: "cover",
 				}}
-				source={{ uri: data.imgUrl }}
+				source={{ uri: data.getFoodById.imgUrl }}
 			/>
 			<Text
 				style={{
@@ -55,7 +82,7 @@ export default function DetailPage({ navigation, route }) {
 					backgroundColor: "white",
 				}}
 			>
-				{data.description}
+				{data.getFoodById.description}
 			</Text>
 		</ScrollView>
 	);

@@ -1,30 +1,53 @@
-import { StyleSheet, FlatList, Button, Text, View, Image, ScrollView, StatusBar } from "react-native";
-import  Card  from '../components/Card'
-import useFetch from "../hooks/itemFetch";
+import { gql, useQuery } from "@apollo/client";
+import {
+	StyleSheet,
+	FlatList,
+	Button,
+	Text,
+	View,
+	Image,
+	ScrollView,
+	StatusBar,
+} from "react-native";
+import Card from "../components/Card";
 
-export default function FoodsPage({navigation}) {
-	const items = useFetch("https://taco-aw.foxhub.space/items");
-    
-    const renderItem = ({ item }) => {
-        
-        return <Card post={item}/>
-    }
+const GET_PRODUCTS = gql`
+	query Query {
+		getFoods {
+			id
+			name
+			imgUrl
+		}
+	}
+`;
 
+export default function FoodsPage({ navigation }) {
+	// const items = useFetch("https://taco-aw.foxhub.space/items");
+	const { data, loading, error } = useQuery(GET_PRODUCTS);
+	if (loading) {
+		return (
+			<View>
+				<Text>loading</Text>
+			</View>
+		);
+	}
 
-    return(
-        <View style={{ flex: 1 }}>
-            <FlatList  
-                data={items}
-                renderItem={renderItem}
-                style={{padding: 5}}
-                numColumns={2}
-                />
-        </View>
-    )
+	console.log(data);
+	const renderItem = ({ item }) => {
+		return <Card post={item} />;
+	};
 
-
+	return (
+		<View style={{ flex: 1 }}>
+            <FlatList
+				data={data.getFoods}
+				renderItem={renderItem}
+				style={{ padding: 5 }}
+				numColumns={2}
+			/>
+		</View>
+	);
 }
-
 
 // const style = StyleSheet.create({
 //     container: { paddingHorizontal: 5, paddingVertical: 5, width: '50%' },
@@ -43,7 +66,7 @@ export default function FoodsPage({navigation}) {
 //     textContainer: {
 //         flex:1,
 //         padding: 5
-//     }, 
+//     },
 //     text: {
 //         color: 'white',
 //         fontSize: 18
