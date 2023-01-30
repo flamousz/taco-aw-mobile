@@ -1,16 +1,6 @@
-import {
-	StyleSheet,
-	Text,
-	View,
-	Image,
-	ScrollView,
-	StatusBar,
-} from "react-native";
-
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 
 export default function HomePage({ navigation }) {
-
-	// console.log(items,'<< ini items');
 	return (
 		<ScrollView
 			style={[
@@ -49,7 +39,7 @@ export default function HomePage({ navigation }) {
 						resizeMode: "cover",
 						alignSelf: "center",
 						fontSize: 25,
-						fontWeight: "bold"
+						fontWeight: "bold",
 					}}
 				>
 					CRUNCHWRAP SUPREME
@@ -74,8 +64,6 @@ export default function HomePage({ navigation }) {
 					}}
 				/>
 			</View>
-
-			{/* <StatusBar style='auto' /> */}
 		</ScrollView>
 	);
 }

@@ -2,7 +2,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons';
 import HomePage from '../views/HomePage'
 import FoodsPage from '../views/FoodsPage'
-import Card from '../components/Card';
 
 const Tab = createBottomTabNavigator()
 
@@ -29,7 +28,6 @@ export default function ProfileTab() {
               
         })}>
             <Tab.Screen name='Home' component={HomePage}/>
-            {/* <Tab.Screen name='Foods' component={FoodsPage}/> */}
             <Tab.Screen name='Foods' component={FoodsPage}/>
         </Tab.Navigator>
     )

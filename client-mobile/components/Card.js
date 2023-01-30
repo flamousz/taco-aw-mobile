@@ -1,13 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import {
-	StyleSheet,
-	Text,
-	View,
-	Image,
-	TouchableOpacity,
-	ScrollView,
-	StatusBar,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 export default function Card({ post }) {
 	const navigation = useNavigation();
@@ -18,7 +10,7 @@ export default function Card({ post }) {
 					<Image
 						style={style.image}
 						source={{
-							uri: post.imgUrl
+							uri: post.imgUrl,
 						}}
 					/>
 				</View>
@@ -30,7 +22,7 @@ export default function Card({ post }) {
 							navigation.navigate("Detail", { id: post.id });
 						}}
 					>
-						<Text style={{color:'white'}}>Detail</Text>
+						<Text style={{ color: "white" }}>Detail</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
