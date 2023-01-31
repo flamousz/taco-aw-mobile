@@ -31,7 +31,7 @@ export default function FoodsPage({ navigation }) {
 		);
 	}
 
-	console.log(data);
+	// console.log(data);
 	const renderItem = ({ item }) => {
 		return <Card post={item} />;
 	};

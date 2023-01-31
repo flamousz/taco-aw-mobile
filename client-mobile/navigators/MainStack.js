@@ -9,7 +9,8 @@ export default function MainStack() {
 		<Stack.Navigator
 			screenOptions={{
 				headerStyle: {
-					backgroundColor: "#4285F4",
+					backgroundColor: "#ACE0F990",
+					opacity: 0.3
 				},
 				headerTintColor: "#fff",
 				headerTitleStyle: {
