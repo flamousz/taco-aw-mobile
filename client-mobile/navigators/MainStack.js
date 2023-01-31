@@ -1,7 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import HomePage from "./views/HomePage";
 import DetailPage from "../views/DetailPage";
-import DummyHomePage from "../views/DummyHomePage";
 import ProfileTab from "./ProfileTab";
 
 const Stack = createNativeStackNavigator();
@@ -11,18 +9,17 @@ export default function MainStack() {
 		<Stack.Navigator
 			screenOptions={{
 				headerStyle: {
-					backgroundColor: "#4285F4",
+					backgroundColor: "#ACE0F990",
+					opacity: 0.3,
 				},
-				headerTintColor: "#fff",
+				headerTintColor: "#1DA1F2",
 				headerTitleStyle: {
 					fontWeight: "bold",
 				},
-                headerTitleAlign: 'center'
+				headerTitleAlign: "center",
 			}}
 		>
-			{/* <Stack.Screen name='Home' component={HomePage} /> */}
-			<Stack.Screen  name='Taco-Aw' component={ProfileTab} />
-			<Stack.Screen name='DummyHome' component={DummyHomePage} />
+			<Stack.Screen name='Taco-Aw' component={ProfileTab} />
 			<Stack.Screen name='Detail' component={DetailPage} />
 		</Stack.Navigator>
 	);
