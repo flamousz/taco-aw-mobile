@@ -10,9 +10,9 @@ export default function MainStack() {
 			screenOptions={{
 				headerStyle: {
 					backgroundColor: "#ACE0F990",
-					opacity: 0.3
+					opacity: 0.3,
 				},
-				headerTintColor: "#fff",
+				headerTintColor: "#1DA1F2",
 				headerTitleStyle: {
 					fontWeight: "bold",
 				},

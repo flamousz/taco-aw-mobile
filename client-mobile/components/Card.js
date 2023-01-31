@@ -53,7 +53,7 @@ const style = StyleSheet.create({
 		fontSize: 12,
 	},
 	action: {
-		backgroundColor: "#4285F4",
+		backgroundColor: "#ACE0F990",
 		borderRadius: 5,
 		paddingHorizontal: 10,
 		paddingVertical: 2,
